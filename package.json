@@ -2,7 +2,6 @@
   "name": "weather-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://denyspetrenk0.github.io/weather-app",
   "dependencies": {
     "@reduxjs/toolkit": "^2.5.1",
     "axios": "^1.7.9",
