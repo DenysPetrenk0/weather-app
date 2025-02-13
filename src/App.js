@@ -18,6 +18,7 @@ function App() {
     const makeRequest = (city) => {
         fetchWeatherByCity(city)
             .then((response) => {
+                console.log(response)
                 dispatch(setWeather(response.data));
             })
             .catch(() => dispatch(setError("Не вдалося знайти погоду для цього міста")))
