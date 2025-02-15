@@ -18,15 +18,15 @@ export const CurrentDayStyled = styled.div`
   ${device.desktop} {
 	display: block;
     grid-column: span 3 / span 3;
+    grid-column-start: 2;
     grid-row-start: 5;
     background: linear-gradient(107deg, rgba(34,135,203,255) 0%, rgba(70,165,222,255) 100%);
     box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);
     padding: 10px;
     border-radius: 20px;
     position: relative;
-    //width: 900px;
-    //height: 135px;
-    margin-left: 30px;
+    width: 100%;
+    height: 170%;
 
     ul {
       position: absolute;
@@ -38,8 +38,8 @@ export const CurrentDayStyled = styled.div`
       box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);
       padding: 20px;
       display: flex;
-      width: 880px;
-      height: 115px;
+      width: 98%;
+      height: 87%;
     }
 
     li {
@@ -60,6 +60,7 @@ export const CurrentDayStyled = styled.div`
       color: rgba(85,186,238,255);
       scale: 1.3;
       border-radius: 10px;
+	  padding: 5px;
     }
   }
 `;

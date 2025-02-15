@@ -15,6 +15,11 @@ const SearchBar = ({onSearch}) => {
 	const countries = useCountries();
 	const cities = useCities(countrySelected);
 
+	// useEffect(() => {
+	// 	if (!citiSelected || citiSelected.length < 2) return;
+	// 	onSearch(citiSelected)
+	// }, [citiSelected, onSearch]);
+
 	return (
 		<SearchBarStyled>
 			<LocationSearch

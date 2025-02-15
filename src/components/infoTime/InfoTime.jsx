@@ -1,42 +1,24 @@
-import React from "react";
+import React, {useEffect, useMemo, useState} from "react";
+import {InfoTimeStyled} from "./InfoTimeStyled";
 
-class InfoTime extends React.Component {
+const InfoTime = () => {
+   const [time, setTime] = useState(new Date());
 
-	constructor(props) {
-		super(props);
-		this.state = {
-			date: new Date(),
-		}
-	}
-
-	getCurrentDate() {
+	const getCurrentDate = useMemo(() => {
 		return new Intl.DateTimeFormat("uk-UA").format(new Date());
-	}
+	}, []);
 
-	componentDidMount() {
-		this.timerID = setInterval(
-			() => this.tick(),
-			1000
-		);
-	}
-	componentWillUnmount() {
-		clearInterval(this.timerID);
-	}
+	useEffect(() => {
+		const timerID = setInterval(() => setTime(new Date()), 1000);
+		return () => clearInterval(timerID);
+	}, []);
 
-	tick() {
-		this.setState({
-			date: new Date()
-		})
-	}
-
-	render() {
-		return(
-			<>
-				<p>{this.getCurrentDate()}</p>
-				<p>{this.state.date.toLocaleTimeString()}</p>
-			</>
-		)
-	}
+	return(
+		<InfoTimeStyled>
+			<p>{getCurrentDate}</p>
+			<p>{time.toLocaleTimeString()}</p>
+		</InfoTimeStyled>
+	)
 }
 
 export default InfoTime;
