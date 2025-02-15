@@ -17,15 +17,15 @@ export const CurrentDayStyled = styled.div`
 
   ${device.desktop} {
 	display: block;
-    grid-column: span 4 / span 4;
-    grid-row-start: 4;
+    grid-column: span 3 / span 3;
+    grid-row-start: 5;
     background: linear-gradient(107deg, rgba(34,135,203,255) 0%, rgba(70,165,222,255) 100%);
     box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);
     padding: 10px;
     border-radius: 20px;
     position: relative;
-    width: 900px;
-    height: 135px;
+    //width: 900px;
+    //height: 135px;
     margin-left: 30px;
 
     ul {

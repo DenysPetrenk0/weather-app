@@ -7,18 +7,15 @@ import ListNextDayInfo from "./components/nextDaysInfo/ListNextDayInfo";
 import icons from "./icon/icon.svg"
 import React, {useEffect} from "react";
 import CurrentDay from "./components/currentDay/CurrentDay";
-import InfoCity from "./components/infoCity/InfoCity";
 import InfoTime from "./components/infoTime/InfoTime";
 
 function App() {
     const dispatch = useDispatch();
     const weather = useSelector((state) => state.weather.data) || {};
-    const error = useSelector((state) => state.weather.error);
 
     const makeRequest = (city) => {
         fetchWeatherByCity(city)
             .then((response) => {
-                console.log(response)
                 dispatch(setWeather(response.data));
             })
             .catch(() => dispatch(setError("Не вдалося знайти погоду для цього міста")))
@@ -58,38 +55,42 @@ function App() {
             </svg>
             <h1 className="title_mob">weather</h1>
         </div>
-        <div className="current_day_info_border">
-            <div className="current_day_info">
-                <div className="current_day_info_box">
-                    <div className="current_day_info_humidity">
-                        <svg className="current_day_info_icon" height="17" width="17">
-                            <use href={icons + "#droplet"}></use>
-                        </svg>
-                        <p className="current_day_info_title">Вологість:</p>
-                        <p className="current_day_info_value">{currentWeather.humidity} %</p>
+        <SearchBar onSearch={makeRequest} />
+        <ListNextDayInfo />
+        <div className="current_day_info__box">
+            <div className="title_dis_box">
+                <svg className="title_dis_icon" height="70" width="70">
+                    <use href={icons + "#umbrella"}></use>
+                </svg>
+                <h1 className="title_dis">weather</h1>
+            </div>
+            <div className="current_day_info_border">
+                <div className="current_day_info">
+                    <div className="current_day_info_box">
+                        <div className="current_day_info_humidity">
+                            <svg className="current_day_info_icon" height="17" width="17">
+                                <use href={icons + "#droplet"}></use>
+                            </svg>
+                            <p className="current_day_info_title">Вологість:</p>
+                            <p className="current_day_info_value">{currentWeather.humidity} %</p>
+                        </div>
+                        <div className="current_day_info_cloud">
+                            <svg className="current_day_info_icon" height="17" width="17">
+                                <use href={icons + "#cloud"}></use>
+                            </svg>
+                            <p className="current_day_info_title">Хмарність:</p>
+                            <p className="current_day_info_value">{currentWeather.cloud} %</p>
+                        </div>
                     </div>
-                    <div className="current_day_info_cloud">
-                        <svg className="current_day_info_icon" height="17" width="17">
-                            <use href={icons + "#cloud"}></use>
+                    <div className="current_day_info_wind_kph">
+                        <svg className="current_day_info_icon-wind" height="17" width="17">
+                            <use href={icons + "#wind"}></use>
                         </svg>
-                        <p className="current_day_info_title">Хмарність:</p>
-                        <p className="current_day_info_value">{currentWeather.cloud} %</p>
+                        <p className="current_day_info_title">Швидкість вітру: </p>
+                        <p className="current_day_info_title">{currentWeather.wind_kph}</p>
                     </div>
-                </div>
-                <div className="current_day_info_wind_kph">
-                    <svg className="current_day_info_icon-wind" height="17" width="17">
-                        <use href={icons + "#wind"}></use>
-                    </svg>
-                    <p className="current_day_info_title">Швидкість вітру: </p>
-                    <p className="current_day_info_title">{currentWeather.wind_kph}</p>
                 </div>
             </div>
-        </div>
-        <div className="title_dis_box">
-            <svg className="title_dis_icon" height="70" width="70">
-                <use href={icons + "#umbrella"}></use>
-            </svg>
-            <h1 className="title_dis">weather</h1>
         </div>
         <div className="temp_info_border">
             <div className="temp_info">
@@ -103,17 +104,9 @@ function App() {
                 </div>
             </div>
         </div>
-        <ListNextDayInfo />
         <CurrentDay />
-        <SearchBar onSearch={makeRequest} />
         <div className="info_time">
-            {error ?
-                <div>введіть вірну назву міста</div> :
-                <>
-                    <InfoTime />
-                    <InfoCity />
-                </>
-            }
+            <InfoTime />
         </div>
     </div>
   );
