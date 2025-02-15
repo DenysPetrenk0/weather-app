@@ -6,7 +6,6 @@ const BASE_URL_COUNTRIES = "https://restcountries.com/v3.1/all";
 const BASE_URL_CITIES = "https://countriesnow.space/api/v0.1/countries/cities";
 
 export const  fetchWeatherByCity = async (city) => {
-	console.log(city)
 	return await axios.get(
 	`${BASE_URL_WEATHER}key=${API_KEY}&q=${city}&days=7&aqi=no&alerts=no`
 	);

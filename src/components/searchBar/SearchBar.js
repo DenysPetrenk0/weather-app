@@ -1,94 +1,47 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {SearchBarStyled} from "./SearchBarStyled";
-import icons from "../../icon/icon.svg";
-import {useDispatch} from "react-redux";
-import {fetchCities, fetchCountries} from "../../service/apiService";
-import {setError} from "../../store";
+import {useSelector} from "react-redux";
+import {useCities, useCountries} from "../../service/hooks/useLocations";
+import LocationSearch from "../locationSearch/LocationSearch";
+import InfoCity from "../infoCity/InfoCity";
+
 
 const SearchBar = ({onSearch}) => {
-	const [cities, setCities] = useState([]);
-	const [cityInput, setCityInput] = useState("");
-	const [countries, setCountries] = useState([]);
-	const [countryInput, setCountryInput] = useState("");
-	const [selectedCountry, setSelectedCountry] = useState(null);
-	const dispatch = useDispatch();
+	const [citiSelected, setCitiSelected] = useState("");
+	const [countrySelected, setCountrySelected] = useState("");
+	const [tempCountry, setTempCountry] = useState("");
+	const error = useSelector((state) => state.weather.error);
 
-	const handleSearch = (city) => {
-		setCityInput(city);
-		onSearch(city)
-	}
-
-	useEffect(() => {
-		fetchCountries()
-			.then((response) => {
-				const countriesName = response.data.map((country) => country.name.common);
-				setCountries(countriesName.sort());
-			})
-			.catch(() => dispatch(setError("Не вдалося отримати список країн")));
-	}, [dispatch]);
-
-	useEffect(() => {
-		if (selectedCountry) {
-			fetchCities(selectedCountry)
-				.then((response) => {
-					setCities(response.data.data.sort())
-				})
-				.catch(() => dispatch(setError("Не вдалося отримати список міст")))
-		}
-	}, [selectedCountry, dispatch]);
+	const countries = useCountries();
+	const cities = useCities(countrySelected);
 
 	return (
 		<SearchBarStyled>
-			<input
-				type="text"
-				placeholder="Введіть країну"
-				className="countries__input"
-				value={countryInput}
-				onChange={(e) => setCountryInput(e.target.value)}
+			<LocationSearch
+				names={countries}
+				text="Країну"
+				inputValue={tempCountry}
+				setInputValue={setTempCountry}
+				onSelect={(country) => {
+					setCountrySelected(country);
+					setTempCountry(country);
+				}}
 			/>
-			{!selectedCountry && countryInput && (
-				<ul className="countries__list">
-					{countries
-						.filter((country) => country.toLowerCase().includes(countryInput.toLowerCase()))
-						.slice(0, 5)
-						.map((country) => (
-							<li key={country} onClick={() => {setCountryInput(country); setSelectedCountry(country)}}>
-								{country}
-							</li>
-						))
-					}
-				</ul>
+			{countrySelected && (
+				<LocationSearch
+					names={cities}
+					text = "Місто"
+					inputValue={citiSelected}
+					setInputValue={setCitiSelected}
+					onSelect={(citi) => {
+						setCitiSelected(citi);
+						onSearch(citi);
+					}}
+				/>
 			)}
-			{selectedCountry &&
-				<>
-					<input
-						type="text"
-						placeholder="Введіть місто"
-						className="cities__input"
-						value={cityInput}
-						onChange={(e) => setCityInput(e.target.value)}
-					/>
-					{selectedCountry && (
-						<ul className="cities__list">
-							{cities
-								.filter((city) => city.toLowerCase().includes(cityInput.toLowerCase()))
-								.slice(0, 5)
-								.map((city) => (
-									<li key={city} onClick={() => handleSearch(city)}>
-										{city}
-									</li>
-								))
-							}
-						</ul>
-					)}
-				</>
-			}
-			{/*<input type="text" placeholder="Введіть країну" onChange={(event) => setCity(event.target.value)}/>*/}
-			{/*<button type="button" className="search_bar_button" onClick={handleSearch} onKeyDown={(e) => console.log(e.key)}>*/}
-			{/*	<svg className="search_bar_button_icon" height="17" width="17">*/}
-			{/*		<use href={icons + "#search"}></use>*/}
-			{/*	</svg>*/}
-			{/*</button>*/}
+			<div className="info_error">
+				{error ? <div>{error}</div> : <InfoCity />}
+			</div>
 		</SearchBarStyled>
 	)
 };

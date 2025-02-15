@@ -9,6 +9,10 @@ class InfoTime extends React.Component {
 		}
 	}
 
+	getCurrentDate() {
+		return new Intl.DateTimeFormat("uk-UA").format(new Date());
+	}
+
 	componentDidMount() {
 		this.timerID = setInterval(
 			() => this.tick(),
@@ -27,7 +31,10 @@ class InfoTime extends React.Component {
 
 	render() {
 		return(
-			<p>{this.state.date.toLocaleTimeString()}</p>
+			<>
+				<p>{this.getCurrentDate()}</p>
+				<p>{this.state.date.toLocaleTimeString()}</p>
+			</>
 		)
 	}
 }
