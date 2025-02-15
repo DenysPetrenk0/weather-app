@@ -19,7 +19,7 @@ const CurrentDay = () => {
 				{weather && weather.forecast.forecastday[0].hour.map((hour, idx) => (
 						<li key={hour.time_epoch} className={getTimeMap(idx).current ? "current" : ""}>
 							<div>{getTimeMap(idx).time}</div>
-							<div>{hour.temp_c}</div>
+							<div>{Math.round(hour.temp_c)} &deg;C</div>
 							<img src={hour.condition.icon} alt="icon"/>
 						</li>
 					)

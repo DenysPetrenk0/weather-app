@@ -13,6 +13,7 @@ export const ListNextDayInfoStyled = styled.div`
     background: linear-gradient(107deg, rgba(34,135,203,255) 0%, rgba(70,165,222,255) 100%);
     box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);
     padding: 10px;
+	margin: 0 auto;
     border-radius: 20px;
     position: relative;
 
