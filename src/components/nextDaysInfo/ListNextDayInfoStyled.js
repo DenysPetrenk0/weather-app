@@ -30,7 +30,7 @@ export const ListNextDayInfoStyled = styled.div`
       padding: 20px;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      justify-content: space-around;
     }
   }
 `;
