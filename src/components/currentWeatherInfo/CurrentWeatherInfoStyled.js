@@ -44,6 +44,8 @@ export const CurrentWeatherInfoStyled = styled.div `
       position: absolute;
       top: 0;
       left: -20px;
+	  width: 17px;
+	  height: 17px;
     }
 	
 	&__title {
@@ -65,6 +67,8 @@ export const CurrentWeatherInfoStyled = styled.div `
 	&__icon-wind {
       fill: white;
       margin-right: 5px;
+	  width: 17px;
+	  height: 17px;
     }
   }
 
@@ -77,6 +81,8 @@ export const CurrentWeatherInfoStyled = styled.div `
       font-size: 33px;
 
       &__icon {
+		width: 70px;
+		height: 70px;
         fill: rgb(208, 198, 18);
       }
     }

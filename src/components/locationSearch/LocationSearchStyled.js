@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const LocationSearchStyled = styled.div`
   display: flex;
   flex-direction: column;
+  margin-bottom: 10px;  
   
   .locations {
 
@@ -16,18 +17,21 @@ export const LocationSearchStyled = styled.div`
       height: 35px;
       padding: 10px;
       outline: none;
-      margin-bottom: 10px;
+      
 
       &::placeholder {
         font-size: 12px;
         color: #d3d3d3;
       }
-
-      &:hover,
+	  
       &:active,
       &:focus {
-        scale: 1.1;
+        scale: 1.05;
       }
+	  
+	  &__box {
+        position: relative;
+	  }
     }
 
     &__list {
@@ -38,5 +42,24 @@ export const LocationSearchStyled = styled.div`
         cursor: pointer;
       }
     }
+	
+	&__button-delete {
+	  border: none;
+	  background: transparent;
+	  cursor: pointer;
+	  position: absolute;
+	  top: 50%;
+	  right: 5px;
+	  transform: translate(0, -50%);
+	  display: flex;
+	  justify-content: center;
+	  align-items: center;
+	  
+	  &__icon {
+		width: 17px;
+		height: 17px;
+		fill: #ffffff;
+	  }
+	}
   }
 `;

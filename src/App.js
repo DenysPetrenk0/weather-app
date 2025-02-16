@@ -36,7 +36,7 @@ function App() {
   return (
     <div className="App">
         <div className="title_mob_box">
-            <svg className="title_mob_icon" height="40" width="40">
+            <svg className="title_mob_icon">
                 <use href={icons + "#umbrella"}></use>
             </svg>
             <h1 className="title_mob">weather</h1>
