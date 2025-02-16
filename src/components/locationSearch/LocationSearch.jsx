@@ -3,6 +3,7 @@ import {setError} from "../../store";
 import {useDispatch, useSelector} from "react-redux";
 import {debounce} from "lodash";
 import {LocationSearchStyled} from "./LocationSearchStyled";
+import icons from "../../icon/icon.svg";
 
 const LocationSearch = ({names, inputValue, setInputValue, onSelect, text}) => {
 	const [showList, setShowList] = useState(false);
@@ -25,14 +26,23 @@ const LocationSearch = ({names, inputValue, setInputValue, onSelect, text}) => {
 
 	return(
 		<LocationSearchStyled>
-			<input
-				type="text"
-				placeholder={`Введіть ${text}`}
-				className="locations__input"
-				value={inputValue}
-				onChange={(event) => debouncedSetInput(event.target.value)}
-				onFocus={() => setShowList(true)}
-			/>
+			<div className="locations__input__box">
+				<input
+					type="text"
+					placeholder={`Введіть ${text}`}
+					className="locations__input"
+					value={inputValue}
+					onChange={(event) => debouncedSetInput(event.target.value)}
+					onFocus={() => setShowList(true)}
+				/>
+				{inputValue &&
+					<button type="button" className="locations__button-delete" onClick={() => setInputValue("")}>
+						<svg className="locations__button-delete__icon">
+							<use href={icons + "#cross"}></use>
+						</svg>
+					</button>
+				}
+			</div>
 			{showList && !error && inputValue && (
 				<ul className="locations__list">
 					{names

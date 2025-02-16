@@ -19,7 +19,6 @@ const SearchBar = ({onSearch}) => {
 	// 	if (!citiSelected || citiSelected.length < 2) return;
 	// 	onSearch(citiSelected)
 	// }, [citiSelected, onSearch]);
-
 	return (
 		<SearchBarStyled>
 			<LocationSearch
@@ -32,7 +31,7 @@ const SearchBar = ({onSearch}) => {
 					setTempCountry(country);
 				}}
 			/>
-			{countrySelected && (
+			{tempCountry && countrySelected && (
 				<LocationSearch
 					names={cities}
 					text = "Місто"
