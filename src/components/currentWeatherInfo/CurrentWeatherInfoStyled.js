@@ -78,6 +78,7 @@ export const CurrentWeatherInfoStyled = styled.div `
 
   @media screen and (min-width: 1515px) {
 	position: static;
+	transform: translate(0, 0);
     grid-row: span 3 / span 3;
     grid-column-start: 4;
 

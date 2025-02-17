@@ -12,6 +12,7 @@ export const SearchBarStyled = styled.div`
   
   @media screen and (min-width: 1515px) {
     grid-row: span 3 / span 3;
+	height: auto;
     margin-top: 0;
 
     input {
