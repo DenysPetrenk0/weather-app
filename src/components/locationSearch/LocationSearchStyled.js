@@ -9,7 +9,7 @@ export const LocationSearchStyled = styled.div`
 
     &__input {
       border-radius: 20px;
-      background: linear-gradient(107deg, rgba(22, 157, 239, 255) 0%, rgba(85, 186, 238, 255) 100%);
+      background: linear-gradient(${({theme}) => theme.primeBackground});
       box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);
       border: none;
       color: white;
@@ -21,7 +21,7 @@ export const LocationSearchStyled = styled.div`
 
       &::placeholder {
         font-size: 12px;
-        color: #d3d3d3;
+        color: ${({theme}) => theme.primeText};
       }
 	  
       &:active,
@@ -35,8 +35,11 @@ export const LocationSearchStyled = styled.div`
     }
 
     &__list {
+	  position: relative;
+	  top: 5px;
+	  z-index: 1;
       padding: 10px;
-      background: linear-gradient(107deg, rgba(22, 157, 239, 255) 0%, rgba(85, 186, 238, 255) 100%);
+      background: linear-gradient(${({theme}) => theme.primeBackground});
 
       li {
         cursor: pointer;
@@ -58,7 +61,7 @@ export const LocationSearchStyled = styled.div`
 	  &__icon {
 		width: 17px;
 		height: 17px;
-		fill: #ffffff;
+		fill: ${({theme}) => theme.primeText};
 	  }
 	}
   }

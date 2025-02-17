@@ -20,7 +20,7 @@ export const CurrentDayStyled = styled.div`
     grid-column: span 3 / span 3;
     grid-column-start: 2;
     grid-row-start: 5;
-    background: linear-gradient(107deg, rgba(34,135,203,255) 0%, rgba(70,165,222,255) 100%);
+    background: linear-gradient(${({theme}) => theme.borderBackground});
     box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);
     padding: 10px;
     border-radius: 20px;
@@ -34,7 +34,7 @@ export const CurrentDayStyled = styled.div`
       left: 50%;
       transform: translate(-50%, -50%);
       border-radius: 20px;
-      background: linear-gradient(107deg, rgba(22,157,239,255) 0%, rgba(85,186,238,255) 100%);
+      background: linear-gradient(${({theme}) => theme.primeBackground});
       box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);
       padding: 20px;
       display: flex;
@@ -51,13 +51,13 @@ export const CurrentDayStyled = styled.div`
       padding: 1px;
 
       &:not(:last-child) {
-        border-right: 1px solid rgb(139 186 210);
+        border-right: 1px solid ${({theme}) => theme.borderInBlock};
       }
     }
 
     .current {
       background: white;
-      color: rgba(85,186,238,255);
+      color: ${({theme}) => theme.secondText};
       scale: 1.3;
       border-radius: 10px;
 	  padding: 5px;

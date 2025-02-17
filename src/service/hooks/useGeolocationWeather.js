@@ -14,7 +14,6 @@ const useGeolocationWeather = () => {
 					fetchWeatherByCoords(latitude, longitude)
 						.then((response) => {
 							dispatch(setWeather(response.data))
-
 						})
 						.catch(() => dispatch(setError("Не вдалося знайти погоду для цього міста")))
 
