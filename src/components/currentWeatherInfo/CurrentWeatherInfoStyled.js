@@ -1,9 +1,12 @@
 import styled from "styled-components";
 
 export const CurrentWeatherInfoStyled = styled.div `
-  grid-row: span 3 / span 3;
-  grid-column-start: 4;
-
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 93%;
+  
   .title {
     display: none;
   }
@@ -14,24 +17,25 @@ export const CurrentWeatherInfoStyled = styled.div `
       left: 50%;
       transform: translate(-50%, -50%);
       border-radius: 20px;
-      background: linear-gradient(107deg, rgba(22,157,239,255) 0%, rgba(85,186,238,255) 100%);
+      background: linear-gradient(${({theme}) => theme.primeBackground});
       box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);
       padding: 5px;
+	  width: 100%;
 	
 	&__border {
       border-radius: 20px;
-      background: linear-gradient(107deg, rgba(34,135,203,255) 0%, rgba(70,165,222,255) 100%);
+      background: linear-gradient(${({theme}) => theme.borderBackground});
       position: relative;
       box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);
       margin-bottom: 10px;
+	  width: 100%;
     }
 	
 	&__box {
       display: flex;
       justify-content: space-around;
-      /*height: 80%;*/
       padding: 5px;
-      border-bottom: 2px solid rgb(1 147 221);
+      border-bottom: 2px solid ${({theme}) => theme.borderInBlock};
     }
 
     &__humidity,
@@ -40,7 +44,7 @@ export const CurrentWeatherInfoStyled = styled.div `
     }
 
     &__icon {
-      fill: white;
+      fill: ${({theme}) => theme.primeText};
       position: absolute;
       top: 0;
       left: -20px;
@@ -65,7 +69,7 @@ export const CurrentWeatherInfoStyled = styled.div `
     }
 	
 	&__icon-wind {
-      fill: white;
+      fill: ${({theme}) => theme.primeText};
       margin-right: 5px;
 	  width: 17px;
 	  height: 17px;
@@ -73,12 +77,18 @@ export const CurrentWeatherInfoStyled = styled.div `
   }
 
   @media screen and (min-width: 1515px) {
+	position: static;
+    grid-row: span 3 / span 3;
+    grid-column-start: 4;
+
     .title {
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
       font-size: 33px;
+	  position: relative;
+	  z-index: 1;
 
       &__icon {
 		width: 70px;
