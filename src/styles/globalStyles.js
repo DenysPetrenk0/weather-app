@@ -95,6 +95,7 @@ const GlobalStyles = createGlobalStyle`
 	
     #root {
       max-width: 1515px;
+	  height: auto;
     }
 	
     .App {
@@ -103,6 +104,7 @@ const GlobalStyles = createGlobalStyle`
       grid-template-rows: repeat(6, 1fr);
       gap: 20px;
       padding: 30px;
+	  height: auto;
     }
 
     .title_mob_box {
@@ -110,6 +112,7 @@ const GlobalStyles = createGlobalStyle`
     }
 
     .weather-video {
+	  display: block;
       position: absolute;
       top: 0;
       left: 0;

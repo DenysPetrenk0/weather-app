@@ -13,6 +13,7 @@ export const InfoTimeStyled = styled.div`
   
   @media screen and (min-width: 1515px) {
     top: 350px;
-    right: 150px;
+    left: 1190px;
+    transform: translate(0, 0);
   }
 `;
